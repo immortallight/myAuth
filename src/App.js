@@ -1,11 +1,11 @@
 // import "./logo.svg"
-import './App.css';
-import React from "react"
+import "./App.css";
+import React from "react";
 import Home from "./Home";
 // import Login from "./Login";
 // import SignUp from "./Signup";
-import { AuthProvider } from './AuthProvider';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from "./AuthProvider";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -14,11 +14,10 @@ function App() {
         <p>tests !!!</p>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element= {<Home />} />
+            <Route exact path="/" element={<Home />} />
 
             {/* <Route exact path="/login" element={<Login />} /> */}
             {/* <Route exact path="/signup" element={<SignUp />} /> */}
-
           </Routes>
         </BrowserRouter>
       </div>
@@ -31,13 +30,7 @@ function App() {
 
 // I hope this information is helpful! Let me know if you have any other questions.
 
-
-
 // I am going try it out and give you feedback soon alright?
 // Sure thing! I'm here to help, so please don't hesitate to ask if you have any other questions or need further assistance. I'll be here when you're ready.
-
-
-
-
 
 export default App;
