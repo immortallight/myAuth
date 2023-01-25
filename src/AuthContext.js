@@ -1,44 +1,41 @@
-import React, { useContext, createContext, useEffect, useState  } from "react";
-import { 
-    GoogleAuthProvider,
-    signInWithPopup,
-    signOut,
-    onAuthStateChanged
- } from "firebase/auth";
- import {auth} from "../src/services/firebase"
-const AuthContext = createContext()
+import React, { useContext, createContext, useEffect, useState } from "react";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../src/services/firebase";
+const AuthContext = createContext();
 
-export const AuthContextProvider = ({children}) =>{
-const [user, setUser]= useState({})
-    const googleSignIn = () =>{
-        const Provider = new GoogleAuthProvider();
-        signInWithPopup(auth, Provider)
+export const AuthContextProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const googleSignIn = () => {
+    const Provider = new GoogleAuthProvider();
+    signInWithPopup(auth, Provider);
+  };
+
+  const logOut = () => {
+    signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("user", currentUser);
+    });
+    return () => {
+      unsubscribe();
     };
-    const logOut = () =>{
-       signOut(auth)
-    }               
+  }, []);
 
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-            setUser(currentUser)
-            console.log("user", currentUser)
- 
-        });
-        return() =>{
-            unsubscribe();
-        }
-    }, []);
+  return (
+    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-    return(
-        <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
-            {children}
-        </AuthContext.Provider>
-    );
-}
-
-export const UserAuth = () =>{
-    return useContext(AuthContext)
-}
-
-
- 
+export const UserAuth = () => {
+  return useContext(AuthContext);
+};

@@ -6,14 +6,13 @@ import Home from "./pages/Home";
 import Signin from "./pages/Singin";
 import Navbar from "./components/Navbar";
 import Protected from "./components/Protected";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <AuthContextProvider>
         <Navbar />
-
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route
