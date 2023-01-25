@@ -4,16 +4,30 @@ import { UserContainer } from "./styles/account.styled";
 
 const Account = () => {
   const {
-    user: { displayName },
+    user: { email, displayName, photoURL },
   } = UserAuth();
 
   return (
     <>
       {displayName ? (
         <UserContainer>
-          <div>
-            <p>Hi {displayName} ✨ , </p>
+          <div className="user-onboarding">
+            <h2>
+              Hi <span>{displayName} ✨,</span>{" "}
+            </h2>
             <p>Take a look at your account information</p>
+          </div>
+          <div className="user-profile">
+            <div className="photo-wrapper">
+              <img
+                src={
+                  "https://lh3.googleusercontent.com/a/AEdFTp73WEkUcWVxLe9qDkl7tUB4uUt_2Bg_Xd0-Rx03G4Y=s96-c"
+                }
+                alt={`${displayName}'s photo`}
+              />
+            </div>
+            <p className="username">{displayName}</p>
+            <p className="email-address">{email}</p>
           </div>
         </UserContainer>
       ) : (
