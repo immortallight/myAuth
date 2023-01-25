@@ -19,12 +19,7 @@ const Account = () => {
           </div>
           <div className="user-profile">
             <div className="photo-wrapper">
-              <img
-                src={
-                  "https://lh3.googleusercontent.com/a/AEdFTp73WEkUcWVxLe9qDkl7tUB4uUt_2Bg_Xd0-Rx03G4Y=s96-c"
-                }
-                alt={`${displayName}'s photo`}
-              />
+              <img src={photoURL} alt={`${displayName}'s photo`} />
             </div>
             <p className="username">{displayName}</p>
             <p className="email-address">{email}</p>
